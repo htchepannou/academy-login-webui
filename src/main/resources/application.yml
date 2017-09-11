@@ -1,0 +1,31 @@
+spring:
+  messages:
+    basename: i18n/messages
+
+
+server:
+  port: 8080
+
+management:
+  security:
+    enabled: false
+
+endpoints:
+  enabled: true
+  health:
+    sensitive: false
+  metrics:
+    enabled: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework: INFO
+
+  pattern:
+    console: "%d Type=%level Logger=%c Thread=%thread %m%n"
+    file: "%d Type=%level Logger=%c Thread=%thread %m%n"
+
+backend:
+  user:
+    url: "https://io-tchepannou-a-user-service.herokuapp.com"
