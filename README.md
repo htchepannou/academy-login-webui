@@ -5,11 +5,9 @@ Master: [![Build Status](https://travis-ci.org/htchepannou/academy-login-webui.s
 # Academy Login WebUI
 Web UI for login
 
-
 ## Requirements
 - Java 1.8
 - Maven
-
 
 ## Installation
 Clone the code repository locally and build it.
