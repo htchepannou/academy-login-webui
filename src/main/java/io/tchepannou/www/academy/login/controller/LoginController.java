@@ -1,6 +1,7 @@
 package io.tchepannou.www.academy.login.controller;
 
 import io.tchepannou.www.academy.login.backend.user.AuthException;
+import io.tchepannou.www.academy.login.backend.user.AuthResponse;
 import io.tchepannou.www.academy.login.backend.user.UserBackend;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,8 +23,6 @@ public class LoginController {
     @Autowired
     private UserBackend userBackend;
 
-    private String defaultSigninRedirectUrl;
-
     @RequestMapping(value="/login")
     public String index(
             @RequestParam(required = false) String done,
@@ -35,32 +34,35 @@ public class LoginController {
 
     @RequestMapping(value="/signin")
     public String signin(
-            @ModelAttribute LoginRequest request,
+            @ModelAttribute LoginForm form,
             final Model model
     ) throws IOException {
         try {
 
-            userBackend.login(request.getEmail(), request.getPassword(), "student");
+            final AuthResponse response = userBackend.login(form.getEmail(), form.getPassword(), "student");
+            final String accessToken = response.getSession().getAccessToken();
+            final String url = appendParam(form.getDone(), "guid", accessToken);
 
-            return request.getDone() == null
-                    ? "redirect:" + defaultSigninRedirectUrl
-                    : "redirect:" + request.getDone();
+            return String.format("redirect:%s", url);
 
         } catch (AuthException e){
             LOGGER.error("Login failure", e);
 
-            model.addAttribute("email", request.getEmail());
-            model.addAttribute("done", request.getDone());
+            model.addAttribute("email", form.getEmail());
+            model.addAttribute("done", form.getDone());
             model.addAttribute("authError", true);
             return "login";
         }
     }
 
-    public String getDefaultSigninRedirectUrl() {
-        return defaultSigninRedirectUrl;
-    }
-
-    public void setDefaultSigninRedirectUrl(final String defaultSigninRedirectUrl) {
-        this.defaultSigninRedirectUrl = defaultSigninRedirectUrl;
+    private String appendParam(final String url, final String name, final String value) {
+        final StringBuilder sb = new StringBuilder(url);
+        if (url.contains("?")){
+            sb.append('&');
+        } else {
+            sb.append('?');
+        }
+        sb.append(name).append('=').append(value);
+        return sb.toString();
     }
 }

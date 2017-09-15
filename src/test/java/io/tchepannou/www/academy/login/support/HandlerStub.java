@@ -17,6 +17,7 @@ public class HandlerStub extends AbstractHandler {
     private static final Logger LOGGER = LoggerFactory.getLogger(HandlerStub.class);
 
     private String contentType = "application/json";
+    private int status = 200;
 
     @Override
     public void handle(
@@ -36,8 +37,8 @@ public class HandlerStub extends AbstractHandler {
         final String content = IOUtils.toString(in, "utf-8");
         httpServletResponse.getWriter().println(content);
         httpServletResponse.addHeader("Content-Type", contentType);
+        httpServletResponse.setStatus(status);
         request.setHandled(true);
-
 
         LOGGER.info(content);
     }
@@ -48,5 +49,13 @@ public class HandlerStub extends AbstractHandler {
 
     public void setContentType(final String contentType) {
         this.contentType = contentType;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(final int status) {
+        this.status = status;
     }
 }
