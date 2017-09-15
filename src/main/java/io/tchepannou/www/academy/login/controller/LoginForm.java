@@ -3,7 +3,7 @@ package io.tchepannou.www.academy.login.controller;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public class LoginRequest {
+public class LoginForm {
     @NotNull
     @Min(1)
     private String email;

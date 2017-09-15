@@ -27,10 +27,6 @@ logging:
     file: "%d Type=%level Logger=%c Thread=%thread %m%n"
 
 application:
-  controller:
-    login:
-      defaultSigninRedirectUrl: "http://www.google.ca"
-
   backend:
     user:
       url: "https://io-tchepannou-a-user-service.herokuapp.com"

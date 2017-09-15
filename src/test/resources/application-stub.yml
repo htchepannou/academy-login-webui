@@ -1,0 +1,5 @@
+application:
+  backend:
+    user:
+      port: 18080
+      url: "http://localhost:${application.backend.user.port}"
