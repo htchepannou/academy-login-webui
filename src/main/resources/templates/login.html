@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <meta charset="UTF-8" />
+    <title>Login</title>
+
+    <link rel="stylesheet" href='/static/lib/bootstrap/3.3.7/css/bootstrap.min.css"'/>
+    <link rel="stylesheet" href='/static/lib/academy/css/academy.css"'/>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                T-Academy
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-8">
+        </div>
+
+        <div class="col-md-4 panel panel-default">
+            <h2 th:text="#{title.signin}">Signin</h2>
+
+            <div class="alert alert-warning" th:if="${authError}">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <span th:text="#{message.auth_failed}">Error...</span>
+            </div>
+
+            <form method="POST" action="/signin">
+                <div class="form-group">
+                    <label for="inputEmail" th:text="#{label.email}">Email</label>
+                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" name="email" th:attr="value=${email}"/>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" th:text="#{label.passowrd}">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password" />
+                </div>
+                <button type="submit" class="btn btn-primary"  th:text="#{button.login}">Login</button>
+
+                <input type="hidden" name="done" th:attr="value=${done}" th:if="${done} != null"/>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+<!-- Optional JavaScript -->
+<script src="/static/lib/jquery/3.2.1/js/jquery-3.2.1.min.js"></script>
+<script src="/static/lib/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>
