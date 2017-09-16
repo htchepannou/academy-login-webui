@@ -4,4 +4,4 @@ swagger:
 application:
   service:
     AccessTokenHolder:
-      domain: ".herokuapp.com"
+      domain: "herokuapp.com"
