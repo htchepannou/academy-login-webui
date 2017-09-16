@@ -1,2 +1,7 @@
 swagger:
   protocol: https
+
+application:
+  service:
+    AccessTokenHolder:
+      domain: ".herokuapp.com"

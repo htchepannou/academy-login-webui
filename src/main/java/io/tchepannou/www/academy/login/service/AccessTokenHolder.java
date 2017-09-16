@@ -23,7 +23,7 @@ public class AccessTokenHolder {
 
     public void set(final SessionDto session){
         final Cookie cookie = new Cookie(COOKIE_NAME, session.getAccessToken());
-//        cookie.setDomain(domain);
+        cookie.setDomain(domain);
         response.addCookie(cookie);
     }
 
