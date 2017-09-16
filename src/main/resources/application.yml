@@ -30,6 +30,3 @@ application:
   backend:
     UserBackend:
       url: "https://io-tchepannou-a-user-service.herokuapp.com"
-  service:
-    AccessTokenHolder:
-      domain: "localhost"
