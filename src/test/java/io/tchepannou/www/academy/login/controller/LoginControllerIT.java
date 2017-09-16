@@ -22,7 +22,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppC
 @SpringBootTest
 @ActiveProfiles(profiles = {"stub"})
 public class LoginControllerIT {
-    @Value("${application.backend.user.port}")
+    @Value("${application.backend.UserBackend.port}")
     private int port;
 
     @Autowired
@@ -79,23 +79,7 @@ public class LoginControllerIT {
         final String result = controller.signin(form, model);
 
         // THEN
-        assertThat(result).isEqualTo("redirect:http://www.test-signin.com?guid=3831ae2e-0f3a-41a4-8b36-fd90fe5db4d3");
-        assertThat(model).isEmpty();
-    }
-
-    @Test
-    public void signinWithDoneUrlHavingParams() throws Exception {
-        // GIVEN
-        final LoginForm form = new LoginForm();
-        form.setEmail("ray.sponsible@gmail.com");
-        form.setPassword("ray123");
-        form.setDone("http://www.test-signin.com?x=1&y=2");
-
-        // WHEN
-        final String result = controller.signin(form, model);
-
-        // THEN
-        assertThat(result).isEqualTo("redirect:http://www.test-signin.com?x=1&y=2&guid=3831ae2e-0f3a-41a4-8b36-fd90fe5db4d3");
+        assertThat(result).isEqualTo("redirect:http://www.test-signin.com");
         assertThat(model).isEmpty();
     }
 
