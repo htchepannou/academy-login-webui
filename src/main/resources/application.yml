@@ -28,5 +28,8 @@ logging:
 
 application:
   backend:
-    user:
+    UserBackend:
       url: "https://io-tchepannou-a-user-service.herokuapp.com"
+  service:
+    AccessTokenHolder:
+      domain: ".heroku.com"

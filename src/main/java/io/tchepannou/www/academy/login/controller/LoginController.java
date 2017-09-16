@@ -3,6 +3,7 @@ package io.tchepannou.www.academy.login.controller;
 import io.tchepannou.www.academy.login.backend.user.AuthException;
 import io.tchepannou.www.academy.login.backend.user.AuthResponse;
 import io.tchepannou.www.academy.login.backend.user.UserBackend;
+import io.tchepannou.www.academy.login.service.AccessTokenHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,12 @@ public class LoginController {
     @Autowired
     private UserBackend userBackend;
 
+    @Autowired
+    private AccessTokenHolder accessTokenHolder;
+
     @RequestMapping(value="/login")
     public String index(
-            @RequestParam(required = false) String done,
+            @RequestParam String done,
             final Model model
     ) {
         model.addAttribute("done", done);
@@ -40,10 +44,8 @@ public class LoginController {
         try {
 
             final AuthResponse response = userBackend.login(form.getEmail(), form.getPassword(), "student");
-            final String accessToken = response.getSession().getAccessToken();
-            final String url = appendParam(form.getDone(), "guid", accessToken);
-
-            return String.format("redirect:%s", url);
+            accessTokenHolder.set(response.getSession());
+            return "redirect:" + form.getDone();
 
         } catch (AuthException e){
             LOGGER.error("Login failure", e);

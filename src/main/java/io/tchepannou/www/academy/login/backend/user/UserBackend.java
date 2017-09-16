@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import java.io.IOException;
 
 @Component
-@ConfigurationProperties("application.backend.user")
+@ConfigurationProperties("application.backend.UserBackend")
 public class UserBackend {
     private String url;
 
