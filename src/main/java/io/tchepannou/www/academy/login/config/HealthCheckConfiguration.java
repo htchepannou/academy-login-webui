@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class HealthCheckConfiguration {
 
     @Bean
-    UrlHealthCheck academyBackendHealthCheck(@Value("${application.backend.user.url}") final String url) {
+    UrlHealthCheck academyBackendHealthCheck(@Value("${application.backend.UserBackend.url}") final String url) {
         return new UrlHealthCheck(url + "/health", 15000);
     }
 

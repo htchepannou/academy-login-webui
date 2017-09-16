@@ -1,0 +1,7 @@
+server:
+  port: 28081
+
+application:
+  backend:
+    UserBackend:
+      url: "http://localhost:18081"
