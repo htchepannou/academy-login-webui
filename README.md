@@ -26,7 +26,7 @@ This will generate the service binary ``target/academy-login-webui.jar``
 ```
 $ java -jar target/academy-login-service.jar
 ```
-- Access the login page at [http://localhost:8080/login](http://localhost:8080/login)
+- Access the [login page](http://localhost:8080/login?done=http://www.google.ca)
 
 
 ## Run the service locally
