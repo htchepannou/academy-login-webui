@@ -21,19 +21,25 @@ $ mvn clean install
 This will generate the service binary ``target/academy-login-webui.jar``
 
 
-## Run
+## Run the service
+- Run the service
 ```
 $ java -jar target/academy-login-service.jar
 ```
+- Access the login page at [http://localhost:8080/login](http://localhost:8080/login)
 
-## Links
-- Local Environment
-    - [Sample login](http://localhost:8080/login/100)
-    - [Service Health](http://localhost:8080/health) 
 
-- Integration Environment
-    - [Sample login](https://io-tchepannou-a-login-web.herokuapp.com/login/100)
-    - [Service Health](https://io-tchepannou-a-login-web.herokuapp.com/health) 
+## Run the service locally
+If you want to run the service and all its downstream locally:
+
+- Run the dependent services using `local` profile:
+  - `academy-user-service`: See instructions [here](https://github.com/htchepannou/academy-user-service#run-the-server-locally)
+- Run the service using `local` profile: 
+```
+$ java -Dspring.profiles.active=local -jar target/academy-login-service.jar
+```
+- Test the status of the service at [http://localhost:28081/health](http://localhost:28081/health). The status should be `UP`.
+- Access the [login page](http://localhost:28081/login?done=http://www.google.ca)
 
 
 ## License
