@@ -26,6 +26,7 @@ This will generate the service binary ``target/academy-login-webui.jar``
 ```
 $ java -jar target/academy-login-service.jar
 ```
+- Check the status of the service at [http://localhost:8080/health](http://localhost:8080/health). The status should be `UP`.
 - Access the [login page](http://localhost:8080/login?done=http://www.google.ca)
 
 
@@ -38,7 +39,7 @@ If you want to run the service and all its downstream locally:
 ```
 $ java -Dspring.profiles.active=local -jar target/academy-login-service.jar
 ```
-- Test the status of the service at [http://localhost:28081/health](http://localhost:28081/health). The status should be `UP`.
+- Check the status of the service at [http://localhost:28081/health](http://localhost:28081/health). The status should be `UP`.
 - Access the [login page](http://localhost:28081/login?done=http://www.google.ca)
 
 
